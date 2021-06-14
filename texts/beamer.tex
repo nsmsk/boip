@@ -1,0 +1,164 @@
+\documentclass[10pt]{beamer}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{unicode=true}
+\usepackage{fontawesome}
+\usepackage{graphicx}
+\usepackage[english,russian]{babel}
+
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+\usepackage{PTSans} 
+\mode<presentation>
+{
+  \usetheme[progressbar=foot,numbering=fraction,background=light]{metropolis} 
+  \usecolortheme{default}
+  \usefonttheme{default}
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\let\textttorig\texttt
+\renewcommand<>{\texttt}[1]{%
+  \only#2{\textttorig{#1}}%
+}
+
+\usepackage{xcolor}
+\definecolor{codecolor}{HTML}{FFC300}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{most,listingsutf8}
+
+\tcbset{tcbox width=auto,left=1mm,top=1mm,bottom=1mm,
+right=1mm,boxsep=1mm,middle=1pt}
+
+\newtcblisting{myr}[1]{colback=codecolor!5,colframe=codecolor!80!black,listing only, 
+left=5mm,enhanced,
+title=#1, fonttitle=\bfseries,
+listing engine=minted,minted language=r}
+
+\definecolor{mygreen}{HTML}{37980D}
+\definecolor{myblue}{HTML}{0D089F}
+\definecolor{myred}{HTML}{98290D}
+
+\usepackage{listings}
+
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  morecomment=[s]{<!--}{-->},
+  morestring=[s]{>}{<},
+  morekeywords={ref,xmlns,version,type,canonicalRef,metr,real,target}
+}
+
+\lstdefinestyle{myxml}{
+language=XML,
+showspaces=false,
+showtabs=false,
+basicstyle=\ttfamily,
+columns=fullflexible,
+breaklines=true,
+showstringspaces=false,
+breakatwhitespace=true,
+escapeinside={(*@}{@*)},
+basicstyle=\color{mygreen}\ttfamily,
+stringstyle=\color{myred},
+commentstyle=\color{myblue}\upshape,
+keywordstyle=\color{myblue}\bfseries,
+}
+
+
+% ------------------------------------------------------------------------------
+% The Document
+% ------------------------------------------------------------------------------
+\title{Разработка приложения для тренировки счета в уме}
+\subtitle{Отчет о проектной работе по курсу <<Основы информатики и программирования>>}
+\author{Никита Сергеевич Самосюк}
+\date{29 мая 2020}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}[fragile]{Цель работы}
+Разработка программы для тренировки счета в уме со следующими свойствами
+
+\begin{enumerate}
+\item	Наличие нескольких игровых режимов
+\item	Сохранение лучших результатов для каждого из игровых режимов
+\item	Графический интерфейс пользователя
+\item	Работа под управлением ОС Windows и Linux
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Режимы работы программы}
+Предусмотрено три игровых режима
+
+\begin{enumerate}
+\item	За минуту вычислить как можно больше простых арифметических выражений
+\item	За минуту вычислить как можно больше сложных арифметических выражений
+\item	Вычисление выражения за 10 секунд, игра до первой ошибки
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Проектирование программы}
+
+Программа в объектно-ориентированном стиле, включает следующие классы
+
+\begin{enumerate}
+\item	Основное окно программы
+\item	Подокно выбора режима игры и ввода имени пользователя
+\item	Подокно для отображения лучших результатов по каждому режиму игры
+\item	Объект для хранения результатов по каждому режиму игры
+\item	Подокно для вывода выражений и запроса ответа пользователя
+\item	Подокно для вывода выражений и запроса ответа пользователя в
+	режиме 10 секунд на ответ
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Реализация программы}
+
+\begin{enumerate}
+\item	Реализация на языке C++
+\item	Использование Qt для графического интерфейса пользователя
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Почему Qt}
+
+\begin{enumerate}
+\item	Библиотека для разработки графического интерфейса, работающего под
+	всеми операционными системами;
+\item	написана на C++, отсюда высокая производительность;
+\item	включает библиотеку контейнеров, работающих быстрее стандартной библиотеки
+	C++, благодаря неявному разделению данных (механизм копирования при
+	записи);
+\item	работа с данными в различных форматах, интернационализация и много
+	других возможностей.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Итоги}
+
+\begin{enumerate}
+\item	Реализовано кроссплатформенное графическое приложение для тренировки устного
+	счета;
+\item	три возможных режима работы программы, для каждого сохраняется лучший
+	результат;
+\item	возможные направления дальнейшей доработки:
+	\begin{itemize}
+	\item	поддержка разных языков интерфейса;
+	\item	поддержка других режимов игры;
+	\item	хранение истории результатов пользователя.
+	\end{itemize}
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[standout]
+    Спасибо за внимание ~\alert{!}~
+\end{frame}
+
+\end{document}
+
